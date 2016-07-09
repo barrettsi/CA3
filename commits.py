@@ -4,9 +4,6 @@ changes_file = 'changes_python.txt'
 # For each line convert to lower case, strip white space and add to list, data
 data = [line.lower().strip() for line in open(changes_file)]
 
-#number of lines in the file
-print len(data)
-
 # Separator between commits is a line of hyphens
 sep = '------------------------------------------------------------------------'
 
@@ -25,8 +22,8 @@ class Commit(object):
         self.comment = ''     
      
      
-#Initialise index and count to zero
-index, count = 0, 0
+#Initialise index to zero
+index = 0
 # Create empty list to hold commit objects
 commits = list()
 
@@ -51,21 +48,10 @@ while True:
         # Comment is the last 'lines' number of lines before index
         current_commit.comment = data[index - current_commit.lines: index]
         commits.append(current_commit)
-        count += 1
         # test print statements 
     except IndexError:
         break
-        
-print len(commits)   
-print commits[420].adds,commits[420].mods, commits[420].dels
 
-""" 
-print current_commit.revision
-print current_commit.author   
-print current_commit.date
-print current_commit.time
-print current_commit.day
-print current_commit.lines 
-print current_commit.adds, current_commit.mods, current_commit.dels 
-print current_commit.comment"""  
-"""
+print 'No of lines in original file:', len(data)        
+print 'No of commits:', len(commits)   
+print commits[420].adds,commits[420].mods, commits[420].dels
